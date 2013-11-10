@@ -13,6 +13,8 @@ CENTMIN_FOLDER_NAME="centmin-v1.2.3mod"
 CENTMIN_DOWNLOAD_URL="http://centminmod.com/download/centmin-v1.2.3-eva2000.04.zip"
 CENTMIN_FILE_NAME="centmin-v1.2.3-eva2000.04.zip"
 GITHUB_URL="https://github.com/MegabyteIO/WP-Droplet.git"
+WEBSITE_INSTALL_DIRECTORY='home/nginx/domains'
+NGINX_CONF_DIR='usr/local/nginx/conf'
 # Change root user password
 passwd
 
@@ -102,3 +104,35 @@ perl -pi -e 's/read -ep "Enter option \[ 1 - 21 ] " option/option=install/g' /$C
 ./centmin.sh
 # Restore Centmin files to original format
 perl -pi -e 's/option=install/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+
+# Whitelist Cloudflare IPs
+csf -a 204.93.240.0/24 Cloudflare
+csf -a 204.93.177.0/24 Cloudflare
+csf -a 199.27.128.0/21 Cloudflare
+csf -a 173.245.48.0/20 Cloudflare
+csf -a 103.21.244.0/22 Cloudflare
+csf -a 103.22.200.0/22 Cloudflare
+csf -a 103.31.4.0/22 Cloudflare
+csf -a 141.101.64.0/18 Cloudflare
+csf -a 108.162.192.0/18 Cloudflare
+csf -a 190.93.240.0/20 Cloudflare
+csf -a 188.114.96.0/20 Cloudflare
+csf -a 197.234.240.0/22 Cloudflare
+csf -a 198.41.128.0/17 Cloudflare
+csf -a 162.158.0.0/15 Cloudflare
+
+# Tweak settings
+perl -pi -e 's/apc.shm_size=32M/apc.shm_size=256M/g' /root/centminmod/php.d/apc.ini
+perl -pi -e 's/apc.enable_cli=1/apc.enable_cli=0/g' /root/centminmod/php.d/apc.ini
+echo "apc.enable_cli = Off" >> /usr/local/lib/php.ini
+
+# Move configs
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/cloudflare.conf /$NGINX_CONF_DIR/cloudflare.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/nginx.conf /$NGINX_CONF_DIR/nginx.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/phpwpcache.conf /$NGINX_CONF_DIR/phpwpcache.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/roots.conf /$NGINX_CONF_DIR/roots.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/wp_fastcgicache.conf /$NGINX_CONF_DIR/wp_fastcgicache.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/wpcache.conf /$NGINX_CONF_DIR/wpcache.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/wpnocache.conf /$NGINX_CONF_DIR/wpnocache.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/wpsecure.conf /$NGINX_CONF_DIR/wpsecure.conf
+cp -f /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/configs/yoast.conf /$NGINX_CONF_DIR/yoast.conf
