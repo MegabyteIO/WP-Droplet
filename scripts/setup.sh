@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# Move timezone to variables up here
 # Directory where centmin is installed
 CENTMIN_DIR="usr/local/src"
 # Folder name for the scripts, stored next to the centminmod directory in CENTMINDIR
