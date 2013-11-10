@@ -1,4 +1,3 @@
-#!/bin/sh
 # Move timezone to variables up here
 # Directory where centmin is installed
 CENTMIN_DIR="usr/local/src"
