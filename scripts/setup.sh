@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# Updates all software except the kernel
-yum -y --exclude=kernel* update
-# Installs some dependencies
-yum -y install git bc
-
 # Directory where centmin is installed
 CENTMIN_DIR="usr/local/src"
 # Folder name for the scripts, stored next to the centminmod directory in CENTMINDIR
@@ -20,10 +15,6 @@ CENTMIN_FILE_NAME="centmin-v1.2.3-eva2000.04.zip"
 GITHUB_URL="https://github.com/MegabyteIO/WP-Droplet.git"
 # Change root user password
 passwd
-
-# Download sources
-cd /$CENTMIN_DIR
-git clone $GITHUB_URL MegabyteIO
 
 # Set up new root username and password
 if [ $(id -u) -eq 0 ]; then
@@ -103,7 +94,7 @@ perl -pi -e 's/read -ep "Enter the SSH port number you want to change to: " PORT
 
 # Restore files to original format
 perl -pi -e 's/option=sshdport/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
-perl -pi -e 's/EXISTPORTNUM=22\Z/\Aread -ep "Enter existing SSH port number (default = 22 for fresh installs): " EXISTPORTNUM\Z/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
+perl -pi -e 's/EXISTPORTNUM=22/read -ep "Enter existing SSH port number (default = 22 for fresh installs): " EXISTPORTNUM/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
 perl -pi -e 's/PORTNUM=$SSH_PORT_NUMBER/read -ep "Enter the SSH port number you want to change to: " PORTNUM/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
 
 # Run a fresh Centmin install
