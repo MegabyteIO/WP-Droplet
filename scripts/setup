@@ -88,15 +88,14 @@ perl -pi -e 's/nginx centminmod/Powered by Poor.IO/g' /$CENTMIN_DIR/$CENTMIN_FOL
 chmod +x centmin.sh
 
 # Change SSH port
-perl -pi -e 's/read -ep "Enter option \[ 1 - 21 ] " option/option=sshdport/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
-perl -pi -e 's/read -ep "Enter existing SSH port number \(default = 22 for fresh installs\): " EXISTPORTNUM/EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
-perl -pi -e 's/read -ep "Enter the SSH port number you want to change to: " PORTNUM/PORTNUM=$SSH_PORT_NUMBER/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
-perl -pi -e 's/echo "To check to see if you can access your server via the new port"/echo "To check to see if you can access your server via the new port"\nperl -pi -e 's/option=sshdport/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
-./centmin.sh
+perl -pi -e 's/read -ep "Enter option \[ 1 - 21 ] " option/option=sshdport\n perl -pi -e 's/option=sshdport/read -ep "Enter option \[ 1 - 21 ] " option/gm' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+#perl -pi -e 's/read -ep "Enter existing SSH port number \(default = 22 for fresh installs\): " EXISTPORTNUM/EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
+#perl -pi -e 's/read -ep "Enter the SSH port number you want to change to: " PORTNUM/PORTNUM=$SSH_PORT_NUMBER/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
+#./centmin.sh
 
 
 # Restore files to original format
-#perl -pi -e 's/option=sshdport/#option=sshdport/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+#perl -pi -e 's/PearlPlaceHolder/perl -pi -e \'s/option=sshdport/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
 #perl -pi -e 's/EXISTPORTNUM=22/#EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
 #perl -pi -e 's/PORTNUM=$SSH_PORT_NUMBER/#EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
 
