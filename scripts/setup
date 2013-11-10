@@ -91,18 +91,19 @@ chmod +x centmin.sh
 perl -pi -e 's/read -ep "Enter option \[ 1 - 21 ] " option/option=sshdport/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
 perl -pi -e 's/read -ep "Enter existing SSH port number \(default = 22 for fresh installs\): " EXISTPORTNUM/EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
 perl -pi -e 's/read -ep "Enter the SSH port number you want to change to: " PORTNUM/PORTNUM=$SSH_PORT_NUMBER/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
-./centmin.sh
+./centmin.sh && perl -pi -e 's/option=sshdport/read -ep "Enter option \[ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+
 
 # Restore files to original format
-perl -pi -e 's/option=sshdport/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
-perl -pi -e 's/EXISTPORTNUM=22/read -ep "Enter existing SSH port number (default = 22 for fresh installs): " EXISTPORTNUM/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
-perl -pi -e 's/PORTNUM=$SSH_PORT_NUMBER/read -ep "Enter the SSH port number you want to change to: " PORTNUM/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
+#perl -pi -e 's/option=sshdport/#option=sshdport/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+#perl -pi -e 's/EXISTPORTNUM=22/#EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
+#perl -pi -e 's/PORTNUM=$SSH_PORT_NUMBER/#EXISTPORTNUM=22/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/inc/sshd.inc
 
 # Run a fresh Centmin install
-perl -pi -e 's/read -ep "Enter option \[ 1 - 21 ] " option/option=install/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
-./centmin.sh
+#perl -pi -e 's/read -ep "Enter option \[ 1 - 21 ] " option/option=install/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+#./centmin.sh
 # Restore Centmin files to original format
-perl -pi -e 's/option=install/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
+#perl -pi -e 's/option=install/read -ep "Enter option [ 1 - 21 ] " option/g' /$CENTMIN_DIR/$CENTMIN_FOLDER_NAME/centmin.sh
 
 # Whitelist Cloudflare IPs
 csf -a 204.93.240.0/24 Cloudflare
