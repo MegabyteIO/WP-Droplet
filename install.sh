@@ -1,4 +1,7 @@
 #!/bin/sh
+# Call this script using:
+# wget -O - https://raw.github.com/luismartingil/commands/master/101_remote2local_wireshark.sh | bash
+
 
 cd /usr/local/src
 # Updates all software except the kernel
