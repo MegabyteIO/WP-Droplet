@@ -1,8 +1,3 @@
-#!/bin/sh
-# Call this script using:
-# wget -O - https://raw.github.com/MegabyteIO/WP-Droplet/master/install.sh | bash
-
-
 # Updates all software except the kernel
 yum -y --exclude=kernel* update
 # Installs some dependencies
