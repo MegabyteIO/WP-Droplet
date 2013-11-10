@@ -9,5 +9,6 @@ yum -y --exclude=kernel* update
 yum -y install git bc
 cd /usr/local/src
 git clone https://github.com/MegabyteIO/WP-Droplet.git MegabyteIO
-chmod +x /usr/local/src/MegabyteIO/scripts/setup.sh
-./usr/local/src/MegabyteIO/scripts/setup.sh
+cd MegabyteIO/scripts
+chmod +x setup.sh
+./setup.sh
