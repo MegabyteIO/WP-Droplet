@@ -37,9 +37,9 @@ fi
 
 # Add new root user to visudo list
 cd /$CENTMIN_DIR/$INSTALL_FOLDER_NAME/$SCRIPTS_FOLDER
-chmod +x visudo.sh
+chmod +x visudo
 ./visudo.sh $NEW_ROOT_USERNAME
-chmod 644 visudo.sh
+chmod 644 visudo
 
 # Change the SSH key to be used with new root user
 read -p "Is this a Digital Ocean droplet created using an SSH key (y/n)? " SSH_CHOICE
